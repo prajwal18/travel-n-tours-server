@@ -2,21 +2,10 @@
 
 module Types
   class QueryType < Types::BaseObject
-    # Remove me later
-    field :test_field, String, null: false,
-    description: 'An example field added by the generator'
-    def test_field
-      'Hello World'
-    end
+    field :places, [PlaceType], resolver: Resolvers::Places::PlacesResolver
+    field :place, PlaceType, resolver: Resolvers::Places::PlaceResolver
 
-    field :places, [PlaceType], null: false
-    def places
-      Place.all
-    end
-
-    field :events, [EventType], null: false
-    def events
-      Event.all
-    end
+    field :events, [EventType], resolver: Resolvers::Events::EventsResolver
+    field :event, EventType, resolver: Resolvers::Events::EventResolver
   end
 end
