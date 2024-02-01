@@ -30,18 +30,11 @@ module Admins
     private
 
     def respond_with(resource, _opts = {})
-      if current_admin
-        render json: {
-          admin: current_admin,
-          status: { code: 200, message: 'Logged in sucessfully.' },
-          data: AdminSerializer.new(resource).serializable_hash[:data][:attributes]
-        }, status: :ok
-      else
-        render json: {
-          status: 401,
-          message: 'Login details did not match,'
-        }, status: :unauthorized
-      end
+      render json: {
+        admin: current_admin,
+        status: { code: 200, message: 'Logged in sucessfully.' },
+        data: AdminSerializer.new(resource).serializable_hash[:data][:attributes]
+      }, status: :ok
     end
 
     def respond_to_on_destroy
