@@ -81,6 +81,7 @@ GEM
     bootsnap (1.18.2)
       msgpack (~> 1.2)
     builder (3.2.4)
+    coderay (1.1.3)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -125,6 +126,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
+    method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.21.2)
     msgpack (1.7.2)
@@ -153,12 +155,17 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.5.4)
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     psych (5.1.2)
       stringio
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (3.0.9)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -258,7 +265,9 @@ DEPENDENCIES
   graphql
   jsonapi-serializer
   pg (~> 1.1)
+  pry
   puma (>= 5.0)
+  rack-cors
   rails (~> 7.1.2)
   rspec-rails
   sprockets-rails

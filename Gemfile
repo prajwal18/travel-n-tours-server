@@ -23,6 +23,9 @@ gem 'puma', '>= 5.0'
 # Json API Serializer
 gem 'jsonapi-serializer'
 
+# Rack cors
+gem 'rack-cors'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
@@ -54,10 +57,13 @@ group :development, :test do
   gem 'dotenv-rails'
 
   gem 'rspec-rails'
+
+  gem 'pry'
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem 'graphiql-rails'
+  
 end
