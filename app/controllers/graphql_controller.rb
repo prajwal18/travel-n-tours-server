@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class GraphqlController < ApplicationController
+  before_action :authenticate_admin!, if: :authenticated_operation?
   # If accessing from outside this domain, nullify the session
   # This allows for outside API access while preventing CSRF attacks,
   # but you'll have to authenticate your user separately
@@ -14,10 +15,12 @@ class GraphqlController < ApplicationController
       # Query context goes here, for example:
       # current_user: current_user,
     }
-    result = TravelNToursServerSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = TravelNToursServerSchema.execute(query, variables:, context:,
+                                                     operation_name:)
     render json: result
   rescue StandardError => e
     raise e unless Rails.env.development?
+
     handle_error_in_development(e)
   end
 
@@ -48,5 +51,17 @@ class GraphqlController < ApplicationController
     logger.error e.backtrace.join("\n")
 
     render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
+  end
+
+  def authenticated_operation?
+    mutation_request?
+  end
+
+  def mutation_request?
+    query.include?('mutation')
+  end
+
+  def query
+    params[:query]
   end
 end
