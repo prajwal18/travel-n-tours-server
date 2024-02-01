@@ -13,7 +13,7 @@ module Types
         rails_blob_path(picture, only_path: true)
       end
     end
-    field :place_id, PlaceType
+    field :place, PlaceType
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
   end

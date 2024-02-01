@@ -1,6 +1,6 @@
 class Place < ApplicationRecord
   validates :name, presence: true
-  validates :descrption, presence: true
+  validates :description, presence: true
   validate :attachments_are_images
 
   has_many :events, dependent: :destroy
