@@ -75,6 +75,9 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    apollo_upload_server (2.1.5)
+      actionpack (>= 6.1.6)
+      graphql (>= 1.8)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.6)
@@ -257,6 +260,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  apollo_upload_server
   bootsnap
   debug
   devise
