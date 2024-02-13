@@ -58,7 +58,7 @@ class GraphqlController < ApplicationController
   end
 
   def mutation_request?
-    query.include?('mutation')
+    query.strip[0..7] == 'mutation'
   end
 
   def query
