@@ -9,5 +9,7 @@ module Types
     field :create_event, mutation: Mutations::Events::Create
     field :update_event, mutation: Mutations::Events::Update
     field :delete_event, mutation: Mutations::Events::Delete
+
+    field :delete_blob, mutation: Mutations::DeleteBlob
   end
 end
