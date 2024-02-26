@@ -13,10 +13,6 @@ module Mutations
       def resolve(name:, description:, place_id:, banner: nil, pictures: nil)
         event = Event.new(name:, description:, place_id:)
 
-        puts "\n\n Hello Hello"
-        puts event
-        puts "\n\n Hello Hello"
-
         if banner
           banner_blob = ActiveStorage::Blob.create_and_upload!(
             io: banner,
@@ -24,17 +20,14 @@ module Mutations
             content_type: banner.content_type
           )
           event.banner = banner_blob
-          # event.banner.attach(banner)
         end
         if pictures && !pictures.empty?
-          pictures.each do |_picture|
-            pictures_blob = ActiveStorage::Blob.create_and_upload!(
+          pictures.each do |picture|
+            event.pictures.attach(
               io: picture,
               filename: picture.original_filename,
               content_type: picture.content_type
             )
-            event.pictures = pictures_blob
-            # event.pictures.attach(picture)
           end
         end
         if event.save
