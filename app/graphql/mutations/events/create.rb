@@ -1,5 +1,10 @@
 module Mutations
   module Events
+    class CreateEventPayload < Types::BaseObject
+      field :event, Types::EventType, null: true
+      field :error, [String], null: true
+    end
+
     class Create < GraphQL::Schema::Mutation
       argument :name, String, required: true
       argument :description, String, required: true
@@ -7,8 +12,7 @@ module Mutations
       argument :banner, ApolloUploadServer::Upload, required: false
       argument :pictures, [ApolloUploadServer::Upload], required: false
 
-      field :event, Types::EventType, null: true
-      field :error, [String], null: true
+      type CreateEventPayload
 
       def resolve(name:, description:, place_id:, banner: nil, pictures: nil)
         event = Event.new(name:, description:, place_id:)
@@ -31,9 +35,6 @@ module Mutations
           end
         end
         if event.save
-          puts "\n"
-          puts event
-          puts "\n"
           { event: }
         else
           { error: event.errors.full_message }
