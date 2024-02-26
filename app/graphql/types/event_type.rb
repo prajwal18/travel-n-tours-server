@@ -15,6 +15,8 @@ module Types
     end
     field :banner_url, String, null: true
     def banner_url
+      return unless object.banner.attached?
+
       rails_blob_path(object.banner, only_path: true)
     end
     field :place, PlaceType

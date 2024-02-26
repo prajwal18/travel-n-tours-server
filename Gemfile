@@ -17,6 +17,9 @@ gem 'devise'
 # GraphQL
 gem 'graphql'
 
+# Apollo Upload server
+gem 'apollo_upload_server'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '>= 5.0'
 
