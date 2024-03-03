@@ -13,6 +13,12 @@ module Types
         rails_blob_path(picture, only_path: true)
       end
     end
+    field :banner_url, String, null: true
+    def banner_url
+      return unless object.banner.attached?
+      
+      rails_blob_path(object.banner, only_path: true)
+    end
     field :events, [EventType]
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false

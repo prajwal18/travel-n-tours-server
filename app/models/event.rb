@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   validate :attachments_are_images
 
   belongs_to :place
+  has_one_attached :banner
   has_many_attached :pictures
 
   def attachments_are_images
